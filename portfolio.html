@@ -8,13 +8,13 @@
 <style>
 :root{--bg:#f5f0e8;--fg:#121212;--card:#fff;--accent:#d4a017;--secondary:#ede8dc;--muted:#555;--text-body:#2a2a2a;--shadow:4px 4px 0px 0px var(--fg);--shadow-sm:2px 2px 0px 0px var(--fg);}
 body.dark{--bg:#111;--fg:#f0ece0;--card:#1c1c1c;--secondary:#262626;--muted:#c0b89a;--text-body:#e0d8c8;}
-*{margin:0;padding:0;box-sizing:border-box;border-radius:0!important;cursor:none!important;}
+*{margin:0;padding:0;box-sizing:border-box;border-radius:0!important;cursor:auto!important;}
 html{scroll-behavior:smooth;}
 body{background:var(--bg);color:var(--fg);font-family:'IBM Plex Mono',monospace;overflow-x:hidden;transition:background .2s,color .2s;}
 h1,h2,h3,h4,h5,h6{font-family:'VT323',monospace;letter-spacing:1px;color:var(--fg);}
 
 /* PIXEL CURSOR */
-#px-cursor{position:fixed;pointer-events:none;z-index:99999;top:0;left:0;will-change:transform;}
+#px-cursor{display:none;position:fixed;pointer-events:none;z-index:99999;top:0;left:0;will-change:transform;}
 #px-cursor canvas{display:block;image-rendering:pixelated;}
 
 /* BG CANVAS */
@@ -91,20 +91,6 @@ section{padding:3rem 2.5rem;border-bottom:2px solid var(--fg);position:relative;
 .skill-badges{display:flex;flex-wrap:wrap;gap:.4rem;}
 .skill-badge{font-size:.65rem;border:2px solid var(--fg);padding:2px 8px;background:var(--secondary);box-shadow:var(--shadow-sm);transition:all .1s;font-weight:600;color:var(--fg);}
 .skill-badge:hover{transform:translate(2px,2px);box-shadow:none;background:var(--accent);color:#111;}
-
-/* GAME */
-#game-section{padding:3rem 2.5rem;border-bottom:2px solid var(--fg);position:relative;z-index:1;}
-.game-wrap{border:2px solid var(--fg);box-shadow:var(--shadow);background:#0a1628;overflow:hidden;max-width:880px;margin:0 auto;}
-#game-canvas{display:block;width:100%;image-rendering:pixelated;}
-.game-ui{display:flex;justify-content:space-between;align-items:center;padding:.45rem 1rem;background:#060f1a;border-top:2px solid var(--fg);}
-.game-score-wrap,.game-lives{font-family:'VT323',monospace;font-size:1.3rem;color:var(--accent);}
-.game-controls{font-family:'VT323',monospace;font-size:.85rem;color:#666;}
-.game-btn-row{display:flex;gap:.75rem;padding:.55rem 1rem;background:#060f1a;}
-.game-btn{font-family:'VT323',monospace;font-size:1.1rem;border:2px solid var(--fg);padding:5px 16px;background:var(--accent);color:#111;box-shadow:var(--shadow-sm);transition:all .1s;}
-.game-btn:hover{transform:translate(2px,2px);box-shadow:none;}
-.mobile-btns{display:none;gap:1rem;padding:.55rem 1rem;background:#060f1a;justify-content:center;}
-.mgb{font-family:'VT323',monospace;font-size:1.4rem;border:2px solid var(--fg);padding:8px 22px;background:var(--secondary);color:var(--fg);box-shadow:var(--shadow-sm);}
-@media(max-width:600px){.mobile-btns{display:flex;}}
 
 /* INTERNSHIP */
 .exp-inner{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;}
@@ -224,7 +210,6 @@ footer{background:var(--fg);color:var(--bg);padding:1.3rem;text-align:center;bor
   <ul class="nav-links">
     <li><a href="#projects-section">PROJECTS</a></li>
     <li><a href="#skills">SKILLS</a></li>
-    <li><a href="#game-section">GAME</a></li>
     <li><a href="#experience">INTERNSHIP</a></li>
     <li><a href="#certifications">CERTS</a></li>
     <li><a href="#education">ACADEMY</a></li>
@@ -257,7 +242,7 @@ footer{background:var(--fg);color:var(--bg);padding:1.3rem;text-align:center;bor
 <!-- PROJECTS -->
 <section id="projects-section" class="reveal">
   <h2 class="section-title">&gt; <span>PROJECTS</span></h2>
-  <p class="section-sub">6 COMPLETED — MANY MORE ON THE WAY! &nbsp;|&nbsp; CLICK ANY CARD FOR BRIEF INFO</p>
+  <p class="section-sub">7 COMPLETED — MANY MORE ON THE WAY! &nbsp;|&nbsp; CLICK ANY CARD FOR BRIEF INFO</p>
   <div class="quest-grid" id="quest-grid"></div>
 </section>
 
@@ -270,28 +255,6 @@ footer{background:var(--fg);color:var(--bg);padding:1.3rem;text-align:center;bor
     <div class="skill-cat"><div class="skill-cat-title">🤖 MACHINE LEARNING</div><div class="skill-badges"><span class="skill-badge">Regression</span><span class="skill-badge">Classification</span><span class="skill-badge">Clustering</span><span class="skill-badge">Feature Eng.</span><span class="skill-badge">Hyperparameter</span><span class="skill-badge">Model Eval</span></div></div>
     <div class="skill-cat"><div class="skill-cat-title">🧠 AI &amp; NLP</div><div class="skill-badges"><span class="skill-badge">TF-IDF</span><span class="skill-badge">NMF</span><span class="skill-badge">UMAP</span><span class="skill-badge">scispaCy</span><span class="skill-badge">NLTK</span><span class="skill-badge">Conv. AI</span></div></div>
     <div class="skill-cat"><div class="skill-cat-title">🛠 DEVELOPMENT</div><div class="skill-badges"><span class="skill-badge">Git</span><span class="skill-badge">GitHub</span><span class="skill-badge">REST APIs</span><span class="skill-badge">VS Code</span><span class="skill-badge">ANTLR4</span><span class="skill-badge">GCC</span></div></div>
-  </div>
-</section>
-
-<!-- GAME -->
-<section id="game-section" class="reveal">
-  <h2 class="section-title">&gt; <span>CRAB RUNNER</span></h2>
-  <p class="section-sub">SPACE / ↑ = JUMP &nbsp;|&nbsp; ↓ = DUCK &nbsp;|&nbsp; 3 LIVES</p>
-  <div class="game-wrap">
-    <canvas id="game-canvas" width="880" height="220"></canvas>
-    <div class="game-ui">
-      <div class="game-score-wrap">SCORE: <span id="score-val">0</span> &nbsp;|&nbsp; BEST: <span id="hi-val">0</span></div>
-      <div class="game-lives">❤️ <span id="lives-val">3</span></div>
-      <div class="game-controls">SPACE/↑ JUMP &nbsp; ↓ DUCK</div>
-    </div>
-    <div class="game-btn-row">
-      <button class="game-btn" onclick="gameAction('start')">[ START ]</button>
-      <button class="game-btn" onclick="gameAction('restart')">[ RESTART ]</button>
-    </div>
-    <div class="mobile-btns">
-      <button class="mgb" ontouchstart="doJump()">⬆ JUMP</button>
-      <button class="mgb" ontouchstart="setDuck(true)" ontouchend="setDuck(false)">⬇ DUCK</button>
-    </div>
   </div>
 </section>
 
@@ -604,192 +567,15 @@ function animateBg(){
 }
 animateBg();
 
-/* ===== GAME ===== */
-const gc=document.getElementById('game-canvas'), gx=gc.getContext('2d');
-const GW=880,GH=220,FLOOR=168;
-let G={run:false,over:false,score:0,hi:0,lives:3,spd:4,frame:0,flash:0};
-let CR={x:80,y:FLOOR,w:48,h:46,vy:0,duck:false,jump:false,af:0};
-let OBS=[],CLOUDS=[];
-
-function resetGame(){
-  G={run:false,over:false,score:0,spd:4,frame:0,flash:0,lives:3,hi:G.hi};
-  CR={x:80,y:FLOOR,w:48,h:46,vy:0,duck:false,jump:false,af:0};
-  OBS=[];CLOUDS=[];
-  for(let i=0;i<4;i++) CLOUDS.push({x:150+i*230,y:16+Math.random()*28,w:60+Math.random()*30,s:.35+Math.random()*.3});
-  document.getElementById('score-val').textContent='0';
-  document.getElementById('lives-val').textContent='3';
-  drawIdle();
-}
-function gameAction(a){
-  if(a==='start'&&!G.run&&!G.over){G.run=true;loop();}
-  if(a==='restart'){resetGame();G.run=true;loop();}
-}
-function doJump(){
-  if(!G.run&&!G.over){G.run=true;loop();return;}
-  if(CR.y>=FLOOR&&!CR.jump){CR.vy=-13;CR.jump=true;}
-}
-function setDuck(d){
-  CR.duck=d;
-  if(d){CR.h=22;if(CR.y>=FLOOR)CR.y=FLOOR+24;}
-  else{CR.h=46;CR.y=Math.min(CR.y,FLOOR);}
-}
-document.addEventListener('keydown',e=>{
-  if((e.code==='Space'||e.code==='ArrowUp')&&!e.repeat){e.preventDefault();doJump();}
-  if(e.code==='ArrowDown'&&!e.repeat)setDuck(true);
-});
-document.addEventListener('keyup',e=>{if(e.code==='ArrowDown')setDuck(false);});
-gc.addEventListener('click',doJump);
-
-function spawnObs(){
-  const t=Math.random();
-  if(t<.35) OBS.push({type:'cactus',x:GW+10,y:FLOOR-52,w:24,h:56});
-  else if(t<.65) OBS.push({type:'rock',x:GW+10,y:FLOOR-20,w:34,h:24});
-  else OBS.push({type:'bird',x:GW+10,y:FLOOR-55-Math.random()*38,w:44,h:30,af:0});
-}
-
-function drawCrab(x,y,w,h,duck,af){
-  const f=Math.floor(af/6)%2,lo=f?3:-3;
-  if(!duck){
-    gx.fillStyle='#dd4400';gx.fillRect(x+4,y+14,w-8,h-14);
-    gx.fillStyle='#ff6622';gx.fillRect(x+2,y+20,w-4,h-20);
-    gx.fillStyle='#cc3300';
-    gx.fillRect(x+8,y+18,w-16,6);gx.fillRect(x+10,y+26,w-20,5);gx.fillRect(x+8,y+33,w-16,4);
-    gx.fillStyle='#ff8844';gx.fillRect(x+10,y+38,w-20,h-38);
-    gx.fillStyle='#dd4400';gx.fillRect(x+8,y+2,5,14);gx.fillRect(x+w-13,y+2,5,14);
-    gx.fillStyle='#000';gx.fillRect(x+6,y-4,10,10);gx.fillRect(x+w-16,y-4,10,10);
-    gx.fillStyle='#fff';gx.fillRect(x+8,y-2,5,5);gx.fillRect(x+w-14,y-2,5,5);
-    gx.fillStyle='#22aaff';gx.fillRect(x+9,y-1,2,2);gx.fillRect(x+w-13,y-1,2,2);
-    gx.fillStyle='#aa2200';gx.fillRect(x+14,y+h-5,w-28,3);
-    gx.fillStyle='#cc3300';
-    gx.fillRect(x+4,y+h-2,5,10+lo);gx.fillRect(x+12,y+h-2,5,8-lo);
-    gx.fillRect(x+w-9,y+h-2,5,10+lo);gx.fillRect(x+w-17,y+h-2,5,8-lo);
-    gx.fillRect(x-2,y+h-2,5,7+lo);gx.fillRect(x+w-3,y+h-2,5,7-lo);
-    gx.fillStyle='#ff6622';
-    gx.fillRect(x-18,y+h-26,20,18);gx.fillRect(x+w-2,y+h-26,20,18);
-    gx.fillStyle='#dd4400';
-    gx.fillRect(x-22,y+h-32,12,8);gx.fillRect(x+w+10,y+h-32,12,8);
-  }else{
-    gx.fillStyle='#dd4400';gx.fillRect(x,y+h-18,w+8,18);
-    gx.fillStyle='#ff6622';gx.fillRect(x+4,y+h-14,w,10);
-    gx.fillStyle='#cc3300';gx.fillRect(x+6,y+h-12,w-4,5);
-    gx.fillStyle='#dd4400';gx.fillRect(x+8,y+h-26,4,10);gx.fillRect(x+w-4,y+h-26,4,10);
-    gx.fillStyle='#000';gx.fillRect(x+6,y+h-30,8,8);gx.fillRect(x+w-6,y+h-30,8,8);
-    gx.fillStyle='#fff';gx.fillRect(x+8,y+h-28,4,4);gx.fillRect(x+w-4,y+h-28,4,4);
-    gx.fillStyle='#cc3300';
-    for(let i=0;i<4;i++)gx.fillRect(x+6+i*11,y+h,4,8+(i%2?lo:-lo));
-    gx.fillStyle='#ff6622';
-    gx.fillRect(x-14,y+h-14,16,14);gx.fillRect(x+w+2,y+h-14,16,14);
-  }
-  if(G.flash>0){
-    gx.fillStyle='rgba(212,160,23,.92)';gx.fillRect(x+w+8,y-24,56,20);
-    gx.fillStyle='#111';gx.font='bold 12px IBM Plex Mono';gx.fillText('OUCH!',x+w+12,y-9);
-    G.flash--;
-  }
-}
-function drawCactus(o){
-  gx.fillStyle='#2d8a2d';gx.fillRect(o.x+8,o.y,8,o.h);
-  gx.fillRect(o.x,o.y+14,10,8);gx.fillRect(o.x,o.y+6,8,10);
-  gx.fillRect(o.x+14,o.y+20,10,8);gx.fillRect(o.x+16,o.y+12,8,10);
-  gx.fillStyle='#1a5e1a';gx.fillRect(o.x+10,o.y+2,4,o.h-4);
-  gx.fillStyle='#aadd88';
-  [[o.x+5,o.y+10],[o.x+5,o.y+18],[o.x+18,o.y+16],[o.x+18,o.y+24],[o.x+10,o.y+2]].forEach(([sx,sy])=>gx.fillRect(sx,sy,2,4));
-}
-function drawRock(o){
-  gx.fillStyle='#888';gx.fillRect(o.x+4,o.y,o.w-8,o.h);
-  gx.fillStyle='#999';gx.fillRect(o.x,o.y+6,o.w,o.h-8);
-  gx.fillStyle='#bbb';gx.fillRect(o.x+5,o.y+4,o.w-16,8);
-  gx.fillStyle='#666';gx.fillRect(o.x,o.y+o.h-5,o.w,5);
-}
-function drawBird(o){
-  const bf=Math.floor(o.af/5)%2;o.af++;
-  gx.fillStyle='#5588ee';gx.fillRect(o.x+8,o.y+10,28,14);
-  gx.fillStyle='#3366cc';gx.fillRect(o.x,o.y+14,10,6);
-  gx.fillStyle='#5588ee';gx.fillRect(o.x+28,o.y+7,12,12);
-  gx.fillStyle='#ffcc00';gx.fillRect(o.x+40,o.y+11,8,5);
-  gx.fillStyle='#111';gx.fillRect(o.x+33,o.y+9,4,4);
-  gx.fillStyle='#fff';gx.fillRect(o.x+34,o.y+10,2,2);
-  gx.fillStyle='#3366cc';
-  if(bf===0){gx.fillRect(o.x+6,o.y,36,12);gx.fillStyle='#7799ff';gx.fillRect(o.x+10,o.y+2,28,6);}
-  else{gx.fillRect(o.x+6,o.y+20,36,12);gx.fillStyle='#7799ff';gx.fillRect(o.x+10,o.y+22,28,6);}
-  gx.fillStyle='#ffcc00';gx.fillRect(o.x+16,o.y+24,4,6);gx.fillRect(o.x+24,o.y+24,4,6);
-}
-function drawCloud(c){
-  gx.fillStyle='rgba(180,200,230,.1)';
-  gx.fillRect(c.x,c.y,c.w,10);gx.fillRect(c.x+8,c.y-7,c.w-16,9);gx.fillRect(c.x+c.w-22,c.y-3,16,7);
-}
-function drawSky(){
-  const g=gx.createLinearGradient(0,0,0,GH);
-  g.addColorStop(0,'#08111e');g.addColorStop(1,'#0f1e30');
-  gx.fillStyle=g;gx.fillRect(0,0,GW,GH);
-}
-function drawStars(){
-  [[80,12],[200,28],[340,10],[480,22],[610,8],[740,18],[30,32],[290,6],[680,26],[820,14]].forEach(([x,y],i)=>{
-    gx.globalAlpha=.2+Math.abs(Math.sin(G.frame*.018+i))*.22;
-    gx.fillStyle='#fff';gx.fillRect(x,y,2,2);
-  });gx.globalAlpha=1;
-}
-function drawFloor(){
-  gx.fillStyle='#8a6010';gx.fillRect(0,FLOOR+46,GW,3);
-  gx.fillStyle='rgba(140,100,20,.18)';
-  const off=(G.frame*G.spd)%60;
-  for(let x=-off;x<GW;x+=60)gx.fillRect(x,FLOOR+49,30,1);
-}
-function drawIdle(){
-  drawSky();drawStars();drawFloor();CLOUDS.forEach(drawCloud);
-  drawCrab(CR.x,CR.y,CR.w,CR.h,false,0);
-  gx.fillStyle='rgba(212,160,23,.9)';gx.font='bold 30px VT323';gx.textAlign='center';
-  gx.fillText('PRESS [ START ] OR SPACE TO PLAY',GW/2,78);
-  gx.font='18px VT323';gx.fillStyle='#667';gx.fillText('JUMP OVER CACTI & ROCKS · DUCK UNDER BIRDS',GW/2,104);
-  gx.textAlign='left';
-}
-function drawOver(){
-  gx.fillStyle='rgba(0,0,0,.68)';gx.fillRect(0,0,GW,GH);
-  gx.fillStyle='#d4a017';gx.font='bold 50px VT323';gx.textAlign='center';
-  gx.fillText('GAME OVER',GW/2,GH/2-20);
-  gx.font='bold 26px VT323';gx.fillStyle='#eee';
-  gx.fillText(`SCORE: ${G.score}  ·  BEST: ${G.hi}`,GW/2,GH/2+16);
-  gx.font='20px VT323';gx.fillStyle='#666';gx.fillText('PRESS [ RESTART ]',GW/2,GH/2+48);
-  gx.textAlign='left';
-}
-let looping=false;
-function loop(){
-  if(looping)return;looping=true;
-  function tick(){
-    if(!G.run){looping=false;return;}
-    G.frame++;G.spd=4+Math.floor(G.score/500)*.5;
-    if(G.frame%(Math.max(42,88-Math.floor(G.score/300)*5))===0)spawnObs();
-    if(!CR.duck){CR.vy+=.72;CR.y+=CR.vy;if(CR.y>=FLOOR){CR.y=FLOOR;CR.vy=0;CR.jump=false;}}
-    CR.af++;
-    OBS.forEach(o=>{o.x-=G.spd+(o.type==='bird'?.9:0);});
-    OBS=OBS.filter(o=>o.x>-80);
-    CLOUDS.forEach(c=>{c.x-=G.spd*.25;if(c.x<-120)c.x=GW+20;});
-    const pad=7;
-    OBS.forEach(o=>{
-      const cy=CR.duck?CR.y+20:CR.y-2,ch=CR.duck?18:CR.h+2;
-      if(CR.x+pad<o.x+o.w-pad&&CR.x+CR.w-pad>o.x+pad&&cy<o.y+o.h-pad&&cy+ch>o.y+pad){
-        o.x=-400;G.lives--;G.flash=30;
-        document.getElementById('lives-val').textContent=Math.max(0,G.lives);
-        if(G.lives<=0){G.run=false;G.over=true;if(G.score>G.hi){G.hi=G.score;document.getElementById('hi-val').textContent=G.hi;}}
-      }
-    });
-    G.score++;document.getElementById('score-val').textContent=G.score;
-    if(G.score>G.hi){G.hi=G.score;document.getElementById('hi-val').textContent=G.hi;}
-    drawSky();drawStars();drawFloor();CLOUDS.forEach(drawCloud);
-    OBS.forEach(o=>{if(o.type==='cactus')drawCactus(o);else if(o.type==='rock')drawRock(o);else drawBird(o);});
-    drawCrab(CR.x,CR.y,CR.w,CR.h,CR.duck,CR.af);
-    if(G.over){drawOver();looping=false;return;}
-    requestAnimationFrame(tick);
-  }tick();
-}
-
 /* ===== DATA ===== */
 const quests=[
-  {num:"01",title:"Medical Document Clustering & Topic Modelling",stack:["Python","NLP","Scikit-Learn","NMF","UMAP","TF-IDF","scispaCy"],desc:"Advanced NLP pipeline processing 10,000+ clinical notes, extracting biomedical entities, latent topics, and interpretable patient clusters.",achievements:["Topic Modeling","Biomedical NER","UMAP Visualization","Clinical Data Analysis"],period:"Jan 2025 – Mar 2025",domain:"Healthcare AI",problem:"Unstructured clinical notes needed transformation into structured insights.",solution:"TF-IDF, ICD-9 extraction, scispaCy NER, NMF + UMAP for dimensionality reduction.",challenges:"High-dimensional sparse text, NER accuracy, interpretable clusters for non-technical staff.",learnings:"NLP pipelines, topic modeling, healthcare data at scale.",future:"Integration into clinical decision-support dashboards."},
-  {num:"02",title:"Used Car Price Prediction",stack:["Python","Pandas","Scikit-Learn","Random Forest","EDA","Feature Engineering","TDD"],desc:"End-to-end ML pipeline — R² = 0.697, MAE ≈ ₹1.07 Lakh, 17.7× performance boost.",achievements:["R² = 0.697","MAE ≈ ₹1.07 Lakh","17.7× Boost","TDD Framework"],period:"Nov 2024 – Dec 2024",domain:"Predictive Analytics",problem:"No reliable pricing system for Indian used-car market.",solution:"Full EDA on 4,340 listings, Car_Age engineering, 100-estimator Random Forest.",challenges:"Categorical data, outlier treatment, noisy real-world dataset.",learnings:"EDA importance, feature engineering, TDD in data science.",future:"Web API with real-time scraping for continuous retraining."},
-  {num:"03",title:"Nova — Custom Programming Language & Compiler",stack:["Java","ANTLR4","Compiler Design","GCC","AST","Three-Address Code"],desc:"Complete language and compiler pipeline from grammar spec to native binary via GCC.",achievements:["Custom Grammar","AST Generation","TAC Generation","GCC Compilation"],period:"Sep 2024 – Nov 2024",domain:"Systems Programming",problem:"Build a real-world language end-to-end to master compiler theory.",solution:"ANTLR4 lexer/parser → AST → TAC via visitor pattern → GCC native compilation.",challenges:"Scoped symbol tables, type inference, test validation.",learnings:"Compiler stages, AST design, visitor pattern.",future:"Standard library, better errors, LLVM backend."},
-  {num:"04",title:"Neon Aura AR — Real-Time Gesture System",stack:["JavaScript","MediaPipe","HTML5 Canvas","Web Audio API","Computer Vision"],desc:"Browser-native real-time hand gesture recognition and AR — zero backend.",achievements:["Hand Tracking","Gesture Recognition","Particle Effects","Audio Synthesis"],period:"Aug 2024 – Oct 2024",domain:"Computer Vision / AR",problem:"Immersive gesture AR running entirely in-browser.",solution:"MediaPipe detection, physics-based Canvas with particle systems and neon trails.",challenges:"Low-latency inference, FPS-optimised rendering, audio sync.",learnings:"Real-time CV, Canvas optimisation, Web Audio API.",future:"Full-body pose tracking, multi-user AR."},
-  {num:"05",title:"Paws & Pets — Full-Stack Pet Care Platform",stack:["JavaScript","HTML5","CSS3","REST APIs","Responsive Design","UI/UX"],desc:"Responsive pet-care platform with dynamic product management and REST API integrations.",achievements:["Responsive Design","REST API Integration","Dynamic Filtering","Modular Architecture"],period:"Jul 2024 – Sep 2024",domain:"Full-Stack Web",problem:"Pet owners needed one platform to discover pet-care products.",solution:"Modular frontend, REST API rendering, iterative UX.",challenges:"Dynamic state, mobile responsiveness, time-to-product.",learnings:"Full-stack architecture, UX iteration, state management.",future:"User accounts, wishlists, recommendation engine."},
-  {num:"06",title:"Indian Legal Chatbot",stack:["NLP","Web Dev","API Integration","Context-Aware AI","Chatbot Design"],desc:"Context-aware conversational AI simplifying Indian legal queries.",achievements:["Query Classification","Context-Aware Responses","Legal NLP","Iterative Accuracy"],period:"Jun 2024 – Aug 2024",domain:"Legal AI",problem:"Legal information in India inaccessible to non-lawyers.",solution:"Chatbot with query classification and structured responses.",challenges:"Ambiguous queries, contextual consistency, responsible accuracy.",learnings:"Domain NLP, chatbot design, responsible AI.",future:"Vernacular support, government portal integration."}
+  {num:"01",title:"Medical Document Clustering & Topic Modelling",stack:["Python","NLP","Scikit-Learn","NMF","UMAP","TF-IDF","scispaCy"],desc:"Advanced NLP pipeline processing 10,000+ clinical notes, extracting biomedical entities, latent topics, and interpretable patient clusters.",achievements:["Topic Modeling","Biomedical NER","UMAP Visualization","Clinical Data Analysis"],period:"Jan 2025 – Mar 2025",domain:"Healthcare AI",problem:"Unstructured clinical notes needed transformation into structured insights.",solution:"TF-IDF, ICD-9 extraction, scispaCy NER, NMF + UMAP for dimensionality reduction.",challenges:"High-dimensional sparse text, NER accuracy, interpretable clusters for non-technical staff.",learnings:"NLP pipelines, topic modeling, healthcare data at scale.",future:"Integration into clinical decision-support dashboards.",link:"https://github.com/TejasVishnuMantena"},
+  {num:"02",title:"Used Car Price Prediction",stack:["Python","Pandas","Scikit-Learn","Random Forest","EDA","Feature Engineering","TDD"],desc:"End-to-end ML pipeline — R² = 0.697, MAE ≈ ₹1.07 Lakh, 17.7× performance boost.",achievements:["R² = 0.697","MAE ≈ ₹1.07 Lakh","17.7× Boost","TDD Framework"],period:"Nov 2024 – Dec 2024",domain:"Predictive Analytics",problem:"No reliable pricing system for Indian used-car market.",solution:"Full EDA on 4,340 listings, Car_Age engineering, 100-estimator Random Forest.",challenges:"Categorical data, outlier treatment, noisy real-world dataset.",learnings:"EDA importance, feature engineering, TDD in data science.",future:"Web API with real-time scraping for continuous retraining.",link:"https://github.com/TejasVishnuMantena"},
+  {num:"03",title:"Nova — Custom Programming Language & Compiler",stack:["Java","ANTLR4","Compiler Design","GCC","AST","Three-Address Code"],desc:"Complete language and compiler pipeline from grammar spec to native binary via GCC.",achievements:["Custom Grammar","AST Generation","TAC Generation","GCC Compilation"],period:"Sep 2024 – Nov 2024",domain:"Systems Programming",problem:"Build a real-world language end-to-end to master compiler theory.",solution:"ANTLR4 lexer/parser → AST → TAC via visitor pattern → GCC native compilation.",challenges:"Scoped symbol tables, type inference, test validation.",learnings:"Compiler stages, AST design, visitor pattern.",future:"Standard library, better errors, LLVM backend.",link:"https://github.com/TejasVishnuMantena"},
+  {num:"04",title:"Neon Aura AR — Real-Time Gesture System",stack:["JavaScript","MediaPipe","HTML5 Canvas","Web Audio API","Computer Vision"],desc:"Browser-native real-time hand gesture recognition and AR — zero backend.",achievements:["Hand Tracking","Gesture Recognition","Particle Effects","Audio Synthesis"],period:"Aug 2024 – Oct 2024",domain:"Computer Vision / AR",problem:"Immersive gesture AR running entirely in-browser.",solution:"MediaPipe detection, physics-based Canvas with particle systems and neon trails.",challenges:"Low-latency inference, FPS-optimised rendering, audio sync.",learnings:"Real-time CV, Canvas optimisation, Web Audio API.",future:"Full-body pose tracking, multi-user AR.",link:"https://github.com/TejasVishnuMantena"},
+  {num:"05",title:"Paws & Pets — Full-Stack Pet Care Platform",stack:["JavaScript","HTML5","CSS3","REST APIs","Responsive Design","UI/UX"],desc:"Responsive pet-care platform with dynamic product management and REST API integrations.",achievements:["Responsive Design","REST API Integration","Dynamic Filtering","Modular Architecture"],period:"Jul 2024 – Sep 2024",domain:"Full-Stack Web",problem:"Pet owners needed one platform to discover pet-care products.",solution:"Modular frontend, REST API rendering, iterative UX.",challenges:"Dynamic state, mobile responsiveness, time-to-product.",learnings:"Full-stack architecture, UX iteration, state management.",future:"User accounts, wishlists, recommendation engine.",link:"https://github.com/TejasVishnuMantena"},
+  {num:"06",title:"Indian Legal Chatbot",stack:["NLP","Web Dev","API Integration","Context-Aware AI","Chatbot Design"],desc:"Context-aware conversational AI simplifying Indian legal queries.",achievements:["Query Classification","Context-Aware Responses","Legal NLP","Iterative Accuracy"],period:"Jun 2024 – Aug 2024",domain:"Legal AI",problem:"Legal information in India inaccessible to non-lawyers.",solution:"Chatbot with query classification and structured responses.",challenges:"Ambiguous queries, contextual consistency, responsible accuracy.",learnings:"Domain NLP, chatbot design, responsible AI.",future:"Vernacular support, government portal integration.",link:"https://github.com/TejasVishnuMantena"},
+  {num:"07",title:"HandGesture-8Puzzle",stack:["React","TypeScript","Next.js","MediaPipe Hands","OpenCV","Tailwind CSS"],desc:"Touchless AI-powered 8-Puzzle game controlled entirely by real-time hand gesture tracking through the webcam — no mouse, keyboard, or touchscreen required.",achievements:["Real-Time Hand Tracking","Webcam-Based Control","Contactless Interaction","Browser-Native App"],period:"2026",domain:"Computer Vision / Interactive Gaming",problem:"Traditional puzzle games rely entirely on mouse, keyboard, or touch input, leaving no room for natural, contactless interaction.",solution:"MediaPipe Hands detects and tracks hand landmarks from the webcam feed in real time; recognized gestures are translated into tile-movement commands on a React/Next.js-driven 8-Puzzle board.",challenges:"Achieving low-latency gesture recognition, mapping noisy hand-landmark data to discrete, reliable puzzle moves, and keeping the UI responsive during continuous video processing.",learnings:"Integrating AI/CV models into a modern web app, real-time webcam processing, MediaPipe hand tracking, and building gesture-based human-computer interfaces with React and TypeScript.",future:"Automatic A* puzzle solver, difficulty levels, move counter, timer challenge, leaderboard, and expanded gesture vocabulary.",link:"https://github.com/TejasVishnuMantena/HandGesture-8Puzzle"}
 ];
 const sm=["Python","Machine Learning","NLP","TF-IDF","UMAP","Scikit-Learn","Random Forest","MediaPipe","ANTLR4","Java","JavaScript","SQL","Data Science","Pandas","NumPy","Matplotlib","scispaCy","REST APIs","Full Stack","Git","GitHub"];
 
@@ -806,7 +592,7 @@ window.addEventListener('load',()=>{
         <div class="quest-tags">${q.stack.map(t=>`<span class="quest-tag">${t}</span>`).join('')}</div>
         <ul class="quest-ach">${q.achievements.map(a=>`<li>${a}</li>`).join('')}</ul>
       </div>`).join('');
-    initTyping();initScroll();resetGame();
+    initTyping();initScroll();
   },2000);
 });
 
@@ -823,7 +609,7 @@ function openModal(i){
     <div class="modal-sec"><h4>CHALLENGES</h4><p>${q.challenges}</p></div>
     <div class="modal-sec"><h4>LEARNINGS</h4><p>${q.learnings}</p></div>
     <div class="modal-sec"><h4>FUTURE SCOPE</h4><p>${q.future}</p></div>
-    <a href="https://github.com/TejasVishnuMantena" target="_blank" class="pixel-btn primary" style="font-size:1.1rem;margin-top:.4rem;">[ VIEW ON GITHUB ]</a>`;
+    <a href="${q.link}" target="_blank" class="pixel-btn primary" style="font-size:1.1rem;margin-top:.4rem;">[ VIEW ON GITHUB ]</a>`;
   document.getElementById('modal').style.display='block';
 }
 function closeModal(){document.getElementById('modal').style.display='none';}
